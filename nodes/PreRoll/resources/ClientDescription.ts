@@ -11,7 +11,7 @@ export const clientOperations: INodeProperties[] = [
 			{ name: 'Create', value: 'create', description: 'Create a client', action: 'Create a client' },
 			{ name: 'Delete', value: 'delete', description: 'Delete a client', action: 'Delete a client' },
 			{ name: 'Get', value: 'get', description: 'Get a client', action: 'Get a client' },
-			{ name: 'Get Many', value: 'getAll', description: 'Get all clients', action: 'Get all clients' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many clients', action: 'Get many clients' },
 			{ name: 'Update', value: 'update', description: 'Update a client', action: 'Update a client' },
 		],
 		default: 'getAll',
@@ -65,7 +65,8 @@ export const clientFields: INodeProperties[] = [
 		displayOptions: { show: { resource: ['client'], operation: ['update'] } },
 		options: [
 			{ displayName: 'Company', name: 'company', type: 'string', default: '' },
-			{ displayName: 'Email', name: 'email', type: 'string', default: '' },
+			{ displayName: 'Email', name: 'email', type: 'string',
+																																										placeholder: 'name@email.com', default: '' },
 			{ displayName: 'Name', name: 'name', type: 'string', default: '' },
 			{ displayName: 'Notes', name: 'notes', type: 'string', default: '' },
 			{ displayName: 'Phone', name: 'phone', type: 'string', default: '' },

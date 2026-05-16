@@ -1,3 +1,4 @@
+import { createHmac } from 'crypto';
 import {
 	IDataObject,
 	IHookFunctions,
@@ -6,11 +7,13 @@ import {
 	INodeTypeDescription,
 	IWebhookFunctions,
 	IWebhookResponseData,
+	NodeConnectionTypes,
 } from 'n8n-workflow';
 
 export class PreRollTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'PreRoll.io Trigger',
+		usableAsTool: true,
 		name: 'preRollTrigger',
 		icon: 'file:preroll.svg',
 		group: ['trigger'],
@@ -21,7 +24,7 @@ export class PreRollTrigger implements INodeType {
 			name: 'PreRoll.io Trigger',
 		},
 		inputs: [],
-		outputs: ['main'],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'preRollApi',
@@ -152,10 +155,8 @@ export class PreRollTrigger implements INodeType {
 		if (secret) {
 			const signature = req.headers['x-preroll-signature'] as string | undefined;
 			if (signature) {
-				const crypto = require('crypto');
 				const rawBody = JSON.stringify(body);
-				const expected = crypto
-					.createHmac('sha256', secret)
+				const expected = createHmac('sha256', secret)
 					.update(rawBody)
 					.digest('hex');
 				if (signature !== expected) {

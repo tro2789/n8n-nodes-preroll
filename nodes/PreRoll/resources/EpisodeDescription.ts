@@ -11,7 +11,7 @@ export const episodeOperations: INodeProperties[] = [
 			{ name: 'Create', value: 'create', description: 'Create an episode', action: 'Create an episode' },
 			{ name: 'Delete', value: 'delete', description: 'Delete an episode', action: 'Delete an episode' },
 			{ name: 'Get', value: 'get', description: 'Get an episode', action: 'Get an episode' },
-			{ name: 'Get Many', value: 'getAll', description: 'Get all episodes', action: 'Get all episodes' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many episodes', action: 'Get many episodes' },
 			{ name: 'Update', value: 'update', description: 'Update an episode', action: 'Update an episode' },
 		],
 		default: 'getAll',
@@ -111,7 +111,7 @@ export const episodeFields: INodeProperties[] = [
 			{ displayName: 'Scheduled Publish Date', name: 'scheduled_publish_date', type: 'string', default: '' },
 			{ displayName: 'Stage ID', name: 'stage_id', type: 'string', default: '', description: 'Move episode to this pipeline stage' },
 			{
-				displayName: 'Status', name: 'status', type: 'options', default: '',
+				displayName: 'Status', name: 'status', type: 'options', default: 'approved',
 				options: [
 					{ name: 'Approved', value: 'approved' },
 					{ name: 'Editing', value: 'editing' },

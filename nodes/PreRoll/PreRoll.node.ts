@@ -5,8 +5,11 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	NodeConnectionTypes,
+	NodeApiError,
 	NodeOperationError,
 } from 'n8n-workflow';
+import type { JsonObject } from 'n8n-workflow';
 
 import { clientOperations, clientFields } from './resources/ClientDescription';
 import { showOperations, showFields } from './resources/ShowDescription';
@@ -22,6 +25,7 @@ import { dashboardOperations, dashboardFields } from './resources/DashboardDescr
 export class PreRoll implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'PreRoll.io',
+		usableAsTool: true,
 		name: 'preRoll',
 		icon: 'file:preroll.svg',
 		group: ['transform'],
@@ -31,8 +35,8 @@ export class PreRoll implements INodeType {
 		defaults: {
 			name: 'PreRoll.io',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'preRollApi',
@@ -298,7 +302,7 @@ export class PreRoll implements INodeType {
 					returnData.push(...executionData);
 					continue;
 				}
-				throw error;
+				throw new NodeApiError(this.getNode(), error as JsonObject);
 			}
 		}
 

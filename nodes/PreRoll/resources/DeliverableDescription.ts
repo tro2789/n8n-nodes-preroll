@@ -10,7 +10,7 @@ export const deliverableOperations: INodeProperties[] = [
 		options: [
 			{ name: 'Create', value: 'create', description: 'Create a deliverable', action: 'Create a deliverable' },
 			{ name: 'Get', value: 'get', description: 'Get a deliverable', action: 'Get a deliverable' },
-			{ name: 'Get Many', value: 'getAll', description: 'Get all deliverables', action: 'Get all deliverables' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many deliverables', action: 'Get many deliverables' },
 			{ name: 'Update', value: 'update', description: 'Update a deliverable', action: 'Update a deliverable' },
 		],
 		default: 'getAll',

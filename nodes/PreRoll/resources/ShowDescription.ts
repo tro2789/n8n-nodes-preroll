@@ -11,7 +11,7 @@ export const showOperations: INodeProperties[] = [
 			{ name: 'Create', value: 'create', description: 'Create a show', action: 'Create a show' },
 			{ name: 'Delete', value: 'delete', description: 'Delete a show', action: 'Delete a show' },
 			{ name: 'Get', value: 'get', description: 'Get a show', action: 'Get a show' },
-			{ name: 'Get Many', value: 'getAll', description: 'Get all shows', action: 'Get all shows' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many shows', action: 'Get many shows' },
 			{ name: 'Update', value: 'update', description: 'Update a show', action: 'Update a show' },
 		],
 		default: 'getAll',
@@ -91,19 +91,6 @@ export const showFields: INodeProperties[] = [
 		default: {},
 		displayOptions: { show: { resource: ['show'], operation: ['update'] } },
 		options: [
-			{ displayName: 'Description', name: 'description', type: 'string', default: '' },
-			{
-				displayName: 'Format', name: 'format', type: 'options', default: 'interview',
-				options: [
-					{ name: 'Interview', value: 'interview' },
-					{ name: 'Narrative', value: 'narrative' },
-					{ name: 'Other', value: 'other' },
-					{ name: 'Panel', value: 'panel' },
-					{ name: 'Solo', value: 'solo' },
-				],
-			},
-			{ displayName: 'Name', name: 'name', type: 'string', default: '' },
-			{ displayName: 'Schedule', name: 'schedule', type: 'string', default: '' },
 			{
 				displayName: 'AI Auto Generate', name: 'ai_auto_generate', type: 'multiOptions', default: [],
 				options: [
@@ -132,6 +119,19 @@ export const showFields: INodeProperties[] = [
 					{ name: 'Professional', value: 'professional' },
 				],
 			},
+			{ displayName: 'Description', name: 'description', type: 'string', default: '' },
+			{
+				displayName: 'Format', name: 'format', type: 'options', default: 'interview',
+				options: [
+					{ name: 'Interview', value: 'interview' },
+					{ name: 'Narrative', value: 'narrative' },
+					{ name: 'Other', value: 'other' },
+					{ name: 'Panel', value: 'panel' },
+					{ name: 'Solo', value: 'solo' },
+				],
+			},
+			{ displayName: 'Name', name: 'name', type: 'string', default: '' },
+			{ displayName: 'Schedule', name: 'schedule', type: 'string', default: '' },
 		],
 	},
 ];

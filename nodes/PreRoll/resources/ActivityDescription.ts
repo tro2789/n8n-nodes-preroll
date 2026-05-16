@@ -30,7 +30,7 @@ export const activityFields: INodeProperties[] = [
 		type: 'number',
 		default: 50,
 		displayOptions: { show: { resource: ['activity'] } },
-		description: 'Max number of activity entries to return',
+		description: 'Max number of results to return',
 		typeOptions: { minValue: 1, maxValue: 200 },
 	},
 ];

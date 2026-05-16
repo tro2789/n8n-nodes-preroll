@@ -9,7 +9,7 @@ export const meetingNoteOperations: INodeProperties[] = [
 		displayOptions: { show: { resource: ['meetingNote'] } },
 		options: [
 			{ name: 'Create', value: 'create', description: 'Create a meeting note', action: 'Create a meeting note' },
-			{ name: 'Get Many', value: 'getAll', description: 'Get all meeting notes for a client', action: 'Get all meeting notes' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many meeting notes for a client', action: 'Get many meeting notes' },
 		],
 		default: 'getAll',
 	},

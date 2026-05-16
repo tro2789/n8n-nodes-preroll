@@ -8,6 +8,7 @@ import {
 export class PreRollApi implements ICredentialType {
 	name = 'preRollApi';
 	displayName = 'PreRoll.io API';
+	icon = { light: 'file:../nodes/PreRoll/preroll.svg', dark: 'file:../nodes/PreRoll/preroll.svg' } as const;
 	documentationUrl = 'https://preroll.io/docs/api';
 	properties: INodeProperties[] = [
 		{

@@ -10,7 +10,7 @@ export const tagOperations: INodeProperties[] = [
 		options: [
 			{ name: 'Create', value: 'create', description: 'Create a tag', action: 'Create a tag' },
 			{ name: 'Delete', value: 'delete', description: 'Delete a tag', action: 'Delete a tag' },
-			{ name: 'Get Many', value: 'getAll', description: 'Get all tags', action: 'Get all tags' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many tags', action: 'Get many tags' },
 			{ name: 'Update', value: 'update', description: 'Update a tag', action: 'Update a tag' },
 		],
 		default: 'getAll',

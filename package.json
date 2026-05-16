@@ -1,13 +1,9 @@
 {
 	"name": "n8n-nodes-preroll",
-	"version": "0.1.4",
-	"description": "n8n community node for PreRoll — podcast production management platform",
+	"version": "0.2.0",
+	"description": "n8n community node for PreRoll.io — podcast production management platform",
 	"keywords": [
-		"n8n-community-node-package",
-		"n8n",
-		"preroll",
-		"podcast",
-		"production"
+		"n8n-community-node-package"
 	],
 	"license": "MIT",
 	"author": {
@@ -16,21 +12,22 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/tro2789/n8n-nodes-preroll.git"
+		"url": "https://github.com/tro2789/n8n-nodes-preroll.git"
 	},
-	"main": "index.js",
 	"scripts": {
-		"build": "tsc && gulp build:icons",
-		"dev": "tsc --watch",
-		"lint": "tsc --noEmit",
+		"build": "n8n-node build",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
 		"release": "n8n-node release",
-		"prepublishOnly": "npm run build"
+		"prepublishOnly": "n8n-node prerelease"
 	},
 	"files": [
 		"dist"
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
+		"strict": true,
 		"credentials": [
 			"dist/credentials/PreRollApi.credentials.js"
 		],
@@ -40,11 +37,12 @@
 		]
 	},
 	"devDependencies": {
-		"@n8n/node-cli": "^0.30.1",
+		"@n8n/node-cli": "*",
 		"@types/node": "^22.0.0",
-		"gulp": "^5.0.0",
-		"n8n-workflow": "^1.0.0",
-		"typescript": "^5.7.0"
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.0.1",
+		"typescript": "5.9.3"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"

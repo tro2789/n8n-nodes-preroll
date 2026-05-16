@@ -8,7 +8,7 @@ export const pipelineStageOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: { show: { resource: ['pipelineStage'] } },
 		options: [
-			{ name: 'Get Many', value: 'getAll', description: 'Get all pipeline stages for a show', action: 'Get all pipeline stages' },
+			{ name: 'Get Many', value: 'getAll', description: 'Get many pipeline stages for a show', action: 'Get many pipeline stages' },
 		],
 		default: 'getAll',
 	},
