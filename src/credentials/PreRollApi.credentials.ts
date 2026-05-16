@@ -7,7 +7,7 @@ import {
 
 export class PreRollApi implements ICredentialType {
 	name = 'preRollApi';
-	displayName = 'PreRoll API';
+	displayName = 'PreRoll.io API';
 	documentationUrl = 'https://preroll.io/docs/api';
 	properties: INodeProperties[] = [
 		{

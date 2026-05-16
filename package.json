@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-preroll",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n community node for PreRoll — podcast production management platform",
 	"keywords": [
 		"n8n-community-node-package",

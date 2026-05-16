@@ -21,15 +21,15 @@ import { dashboardOperations, dashboardFields } from './resources/DashboardDescr
 
 export class PreRoll implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'PreRoll',
+		displayName: 'PreRoll.io',
 		name: 'preRoll',
 		icon: 'file:preroll.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with PreRoll — podcast production management',
+		description: 'Interact with PreRoll.io — podcast production management',
 		defaults: {
-			name: 'PreRoll',
+			name: 'PreRoll.io',
 		},
 		inputs: ['main'],
 		outputs: ['main'],

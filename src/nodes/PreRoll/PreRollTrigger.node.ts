@@ -10,15 +10,15 @@ import {
 
 export class PreRollTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'PreRoll Trigger',
+		displayName: 'PreRoll.io Trigger',
 		name: 'preRollTrigger',
 		icon: 'file:preroll.svg',
 		group: ['trigger'],
 		version: 1,
 		subtitle: '={{$parameter["events"].join(", ")}}',
-		description: 'Triggers when events occur in PreRoll',
+		description: 'Triggers when events occur in PreRoll.io',
 		defaults: {
-			name: 'PreRoll Trigger',
+			name: 'PreRoll.io Trigger',
 		},
 		inputs: [],
 		outputs: ['main'],
