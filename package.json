@@ -1,0 +1,50 @@
+{
+	"name": "n8n-nodes-preroll",
+	"version": "0.1.0",
+	"description": "n8n community node for PreRoll — podcast production management platform",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"preroll",
+		"podcast",
+		"production"
+	],
+	"license": "MIT",
+	"author": {
+		"name": "Trevor O'Hare",
+		"email": "trevor@trevorohare.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tro2789/n8n-nodes-preroll.git"
+	},
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc && gulp build:icons",
+		"dev": "tsc --watch",
+		"lint": "tslint -p tsconfig.json -c tslint.json",
+		"prepublishOnly": "npm run build"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/PreRollApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/PreRoll/PreRoll.node.js",
+			"dist/nodes/PreRoll/PreRollTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@types/node": "^22.0.0",
+		"gulp": "^5.0.0",
+		"n8n-workflow": "^1.0.0",
+		"typescript": "^5.7.0"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
