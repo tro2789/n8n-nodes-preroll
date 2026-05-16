@@ -24,7 +24,7 @@ export class PreRollApi implements ICredentialType {
 			displayName: 'Base URL',
 			name: 'baseUrl',
 			type: 'string',
-			default: 'https://api.preroll.io',
+			default: 'https://preroll.io',
 			description: 'Base URL of your PreRoll instance',
 		},
 	];
