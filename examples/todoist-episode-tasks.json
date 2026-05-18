@@ -1,0 +1,105 @@
+{
+  "name": "PreRoll → Todoist Episode Tasks",
+  "nodes": [
+    {
+      "id": "preroll-trigger",
+      "name": "PreRoll.io Trigger",
+      "type": "n8n-nodes-preroll.preRollTrigger",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "parameters": {
+        "events": [
+          "episode.status_changed"
+        ],
+        "description": "Todoist task creation"
+      },
+      "credentials": {
+        "preRollApi": {
+          "id": "",
+          "name": "PreRoll.io API"
+        }
+      }
+    },
+    {
+      "id": "only-new-episodes",
+      "name": "Only New Episodes",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [440, 300],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "caseSensitive": true
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "new-status-planning",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.data.new_status }}",
+              "rightValue": "submitted"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "build-task",
+      "name": "Build Task Details",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 200],
+      "parameters": {
+        "jsCode": "const payload = $input.first().json;\nconst data = payload.data;\n\nconst title = `🎙️ ${data.title}`;\nconst description = [\n  `Episode from PreRoll.io`,\n  `Show ID: ${data.show_id}`,\n  `Episode ID: ${data.episode_id}`,\n].join('\\n');\n\nreturn [{ json: { title, description } }];"
+      }
+    },
+    {
+      "id": "todoist-create",
+      "name": "Create Todoist Task",
+      "type": "n8n-nodes-base.todoist",
+      "typeVersion": 2.1,
+      "position": [920, 200],
+      "parameters": {
+        "resource": "task",
+        "operation": "create",
+        "project": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "content": "={{ $json.title }}",
+        "additionalFields": {
+          "description": "={{ $json.description }}",
+          "priority": 3
+        }
+      },
+      "credentials": {
+        "todoistOAuth2Api": {
+          "id": "",
+          "name": "Todoist"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "PreRoll.io Trigger": {
+      "main": [[{ "node": "Only New Episodes", "type": "main", "index": 0 }]]
+    },
+    "Only New Episodes": {
+      "main": [
+        [{ "node": "Build Task Details", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Build Task Details": {
+      "main": [[{ "node": "Create Todoist Task", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

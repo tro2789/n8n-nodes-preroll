@@ -1,0 +1,74 @@
+{
+  "name": "PreRoll → Slack Notifications",
+  "nodes": [
+    {
+      "id": "preroll-trigger",
+      "name": "PreRoll.io Trigger",
+      "type": "n8n-nodes-preroll.preRollTrigger",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "parameters": {
+        "events": [
+          "episode.status_changed",
+          "episode.published",
+          "episode.scheduled",
+          "deliverable.submitted",
+          "deliverable.approved",
+          "deliverable.revision_requested"
+        ],
+        "description": "Slack notifications"
+      },
+      "credentials": {
+        "preRollApi": {
+          "id": "",
+          "name": "PreRoll.io API"
+        }
+      }
+    },
+    {
+      "id": "format-message",
+      "name": "Format Slack Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300],
+      "parameters": {
+        "jsCode": "const payload = $input.first().json;\nconst event = payload.event;\nconst data = payload.data;\n\nconst emoji = {\n  'episode.status_changed': '🔄',\n  'episode.published': '🎙️',\n  'episode.scheduled': '📅',\n  'deliverable.submitted': '📦',\n  'deliverable.approved': '✅',\n  'deliverable.revision_requested': '✏️',\n};\n\nconst label = {\n  'episode.status_changed': `Episode status changed to *${data.new_status}*`,\n  'episode.published': 'Episode published',\n  'episode.scheduled': `Episode scheduled for ${data.scheduled_at}`,\n  'deliverable.submitted': `Deliverable submitted (${data.type})`,\n  'deliverable.approved': 'Deliverable approved',\n  'deliverable.revision_requested': 'Revision requested',\n};\n\nconst icon = emoji[event] || '📣';\nconst description = label[event] || event;\nconst title = data.title || 'Untitled';\n\nlet text = `${icon} *${description}*\\n>*${title}*`;\n\nif (data.reviewer_notes) {\n  text += `\\n>_${data.reviewer_notes}_`;\n}\n\nif (data.share_url) {\n  text += `\\n><${data.share_url}|Listen now>`;\n}\n\nreturn [{ json: { text } }];"
+      }
+    },
+    {
+      "id": "slack-send",
+      "name": "Send to Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "channel": {
+          "__rl": true,
+          "mode": "name",
+          "value": "#podcast-updates"
+        },
+        "text": "={{ $json.text }}",
+        "otherOptions": {}
+      },
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "",
+          "name": "Slack"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "PreRoll.io Trigger": {
+      "main": [[{ "node": "Format Slack Message", "type": "main", "index": 0 }]]
+    },
+    "Format Slack Message": {
+      "main": [[{ "node": "Send to Slack", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

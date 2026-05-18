@@ -59,22 +59,22 @@ The trigger node automatically registers and deregisters webhook endpoints in Pr
 
 ## Example Workflows
 
-### Notify Slack when an episode is published
+Import-ready workflow templates are in the [`examples/`](./examples/) directory:
 
-1. Add a **PreRoll Trigger** node with event `episode.published`
-2. Connect to a **Slack** node to post a message
+| Workflow | Description | File |
+|----------|-------------|------|
+| **Slack Notifications** | Get real-time Slack messages for episode and deliverable events | [`slack-notifications.json`](./examples/slack-notifications.json) |
+| **Todoist Episode Tasks** | Auto-create a Todoist task when a new episode is created | [`todoist-episode-tasks.json`](./examples/todoist-episode-tasks.json) |
 
-### Auto-transcribe new episodes
+To import: in n8n, go to **Workflows → Import from File** and select the JSON file.
 
-1. Add a **PreRoll Trigger** node with event `episode.stage_changed`
-2. Add an **IF** node to check if the new stage is "Editing"
-3. Connect to a **PreRoll** node → AI → Transcribe Episode
+See [`examples/README.md`](./examples/README.md) for setup instructions and a full webhook payload reference.
 
-### Weekly episode report
+### More ideas
 
-1. Add a **Schedule Trigger** (every Monday)
-2. Connect to a **PreRoll** node → Dashboard → Get Overview
-3. Connect to an **Email** node to send the summary
+- **Auto-transcribe new episodes** — PreRoll Trigger (`episode.stage_changed`) → IF (stage = "Editing") → PreRoll AI Transcribe
+- **Weekly episode report** — Schedule Trigger (every Monday) → PreRoll Dashboard → Email
+- **Stripe → client onboarding** — Stripe Trigger (checkout completed) → PreRoll Create Client → Create Show
 
 ## Development
 
