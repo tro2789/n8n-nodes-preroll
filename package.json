@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-preroll",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "n8n community node for PreRoll.io — podcast production management platform",
 	"keywords": [
 		"n8n-community-node-package"
@@ -10,9 +10,13 @@
 		"name": "Trevor O'Hare",
 		"email": "trevor@trevorohare.com"
 	},
+	"homepage": "https://github.com/tro2789/n8n-nodes-preroll",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tro2789/n8n-nodes-preroll.git"
+	},
+	"publishConfig": {
+		"provenance": true
 	},
 	"scripts": {
 		"build": "n8n-node build",
