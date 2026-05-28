@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-preroll",
-	"version": "0.2.6",
+	"version": "0.2.7",
 	"description": "n8n community node for PreRoll.io — podcast production management platform",
 	"keywords": [
 		"n8n-community-node-package"
@@ -16,7 +16,8 @@
 		"url": "https://github.com/tro2789/n8n-nodes-preroll.git"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"scripts": {
 		"build": "n8n-node build",

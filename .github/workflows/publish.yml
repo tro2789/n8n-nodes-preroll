@@ -10,6 +10,10 @@ jobs:
     name: Publish to npm
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,7 +28,7 @@ jobs:
 
       - name: Publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          npm publish
+          [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          npm publish --provenance
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
