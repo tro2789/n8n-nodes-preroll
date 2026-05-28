@@ -8,6 +8,7 @@ on:
 jobs:
   publish:
     name: Publish to npm
+    if: github.server_url == 'https://github.com'
     runs-on: ubuntu-latest
 
     permissions:
